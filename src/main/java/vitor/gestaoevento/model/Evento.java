@@ -26,7 +26,8 @@ public class Evento {
     @Column(nullable = false)
     private StatusEvento status;
 
-    public Evento() {}
+    public Evento() {
+    }
 
     public Evento(String nome, LocalDateTime dataHoraEvento, String local,
                   String atracao, Double preco, StatusEvento status) {
@@ -66,7 +67,11 @@ public class Evento {
         return status;
     }
 
-    public boolean isAtivo(){
+    public void encerrar() {
+        this.status = StatusEvento.ENCERRADO;
+    }
+
+    public boolean isAtivo() {
         return this.status.equals(StatusEvento.ATIVO);
     }
 }
