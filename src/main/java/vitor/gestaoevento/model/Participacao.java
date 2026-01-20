@@ -22,11 +22,12 @@ public class Participacao {
     private Evento evento;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "estado_pagamento", nullable = false)
     private StatusPagamento statusPagamento;
-    @Column(nullable = false)
+    @Column(name = "estado_checkin", nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusCheckin statusCheckin;
+    @Column(name = "horario_checkin")
     private LocalDateTime dataCheckin;
 
     protected Participacao(){}

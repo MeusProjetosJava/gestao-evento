@@ -11,19 +11,18 @@ public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false)
     private String nome;
-    @Column(nullable = false)
+    @Column(name = "horario", nullable = false)
     private LocalDateTime dataHoraEvento;
-    @Column(nullable = false)
+    @Column(name = "localizacao", nullable = false)
     private String local;
     @Column(nullable = false)
     private String atracao;
     @Column(nullable = false)
     private Double preco;
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(name = "estado", nullable = false)
     private StatusEvento status;
 
     public Evento() {
