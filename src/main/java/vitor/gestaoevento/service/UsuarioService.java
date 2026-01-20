@@ -6,21 +6,21 @@ import vitor.gestaoevento.model.Usuario;
 import vitor.gestaoevento.repository.UsuarioRepository;
 @Service
 public class UsuarioService {
-    private final UsuarioRepository userRepo;
+    private final UsuarioRepository usuarioRepository;
 
-    public UsuarioService(UsuarioRepository userRepo) {
-        this.userRepo = userRepo;
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
 
     public Usuario cadastrarUsuario(String nome, String email,
                                               String senha, TipoUsuario tipoUsuario){
 
-        if (userRepo.existsByEmail(email)){
+        if (usuarioRepository.existsByEmail(email)){
             throw new IllegalArgumentException("Já existe um usuario cadastrado com esse email");
         }
 
         Usuario usuario = new Usuario(nome,email,senha,tipoUsuario);
 
-        return userRepo.save(usuario);
+        return usuarioRepository.save(usuario);
     }
 }
