@@ -1,19 +1,24 @@
 package vitor.gestaoevento.dto;
 
-public class CheckinRequestDto {
+import vitor.gestaoevento.model.StatusCheckin;
 
-    private Long usuarioId;
-    private Long eventoId;
+import java.time.LocalDateTime;
 
-    public CheckinRequestDto() {}
+public class CheckinResponseDto {
 
-    public Long getUsuarioId() {
-        return usuarioId;
+   private StatusCheckin statusCheckin;
+   private LocalDateTime dataCheckin;
+
+   public CheckinResponseDto(StatusCheckin statusCheckin, LocalDateTime dataCheckin) {
+       this.statusCheckin = statusCheckin;
+       this.dataCheckin = dataCheckin;
+   }
+
+    public StatusCheckin getStatusCheckin() {
+        return statusCheckin;
     }
 
-    public Long getEventoId() {
-        return eventoId;
+    public LocalDateTime getDataCheckin() {
+        return dataCheckin;
     }
-
-    
 }
