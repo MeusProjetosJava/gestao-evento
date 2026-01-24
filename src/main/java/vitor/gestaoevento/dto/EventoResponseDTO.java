@@ -20,6 +20,7 @@ public class EventoResponseDTO {
         this.local = evento.getLocal();
         this.atracao = evento.getAtracao();
         this.preco = evento.getPreco();
+        this.status = evento.getStatus();
     }
 
     public Long getId() {
