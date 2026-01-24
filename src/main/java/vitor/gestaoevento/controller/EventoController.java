@@ -28,7 +28,7 @@ public class EventoController {
         return new EventoResponseDTO(evento);
     }
 
-    @GetMapping
+    @GetMapping("/ativos")
     public List<EventoResponseDTO> listarEventosAtivos() {
         return eventoService.listarEventosAtivos()
                 .stream()
