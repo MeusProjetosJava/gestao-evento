@@ -3,13 +3,14 @@ package vitor.gestaoevento.service;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import vitor.gestaoevento.integration.whatsapp.WhatsAppService;
+import vitor.gestaoevento.integration.sms.SmsService;
 import vitor.gestaoevento.model.Evento;
 import vitor.gestaoevento.model.Participacao;
 import vitor.gestaoevento.model.Usuario;
 import vitor.gestaoevento.repository.EventoRepository;
 import vitor.gestaoevento.repository.ParticipacaoRepository;
 import vitor.gestaoevento.repository.UsuarioRepository;
+
 @Slf4j
 @Service
 public class ParticipacaoService {
@@ -17,16 +18,16 @@ public class ParticipacaoService {
     private final UsuarioRepository usuarioRepository;
     private final EventoRepository eventoRepository;
     private final ParticipacaoRepository participacaoRepository;
-    private final WhatsAppService whatsAppService;
+    private final SmsService smsService;
 
     public ParticipacaoService(UsuarioRepository usuarioRepository,
                                EventoRepository eventoRepository,
                                ParticipacaoRepository participacaoRepository,
-                               WhatsAppService  whatsAppService) {
+                               SmsService smsService) {
         this.usuarioRepository = usuarioRepository;
         this.eventoRepository = eventoRepository;
         this.participacaoRepository = participacaoRepository;
-        this.whatsAppService = whatsAppService;
+        this.smsService = smsService;
     }
 
     public Participacao cadastrarParticipacao(Long usuarioId, Long eventoId) {
@@ -52,6 +53,7 @@ public class ParticipacaoService {
 
         return participacaoRepository.save(participacao);
     }
+
     @Transactional
     public Participacao confirmarPagamento(Long participacaoId) {
 
@@ -62,11 +64,7 @@ public class ParticipacaoService {
 
         Participacao salva = participacaoRepository.save(participacao);
 
-        try {
-            whatsAppService.enviarConfirmacaoPagamento(salva);
-        } catch (Exception e) {
-            log.error("Erro ao enviar WhatsApp", e);
-        }
+        smsService.enviarConfirmacaoPagamento(salva);
 
 
         return salva;
