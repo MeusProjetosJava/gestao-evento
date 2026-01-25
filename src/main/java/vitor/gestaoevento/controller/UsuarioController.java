@@ -21,6 +21,7 @@ public class UsuarioController {
     @PostMapping
     public UsuarioResponseDTO criarUsuario(@RequestBody UsuarioRequestDTO usuarioRequestDTO) {
         Usuario usuario = usuarioService.cadastrarUsuario(usuarioRequestDTO.getNome(),
+                usuarioRequestDTO.getTelefone(),
                 usuarioRequestDTO.getEmail(), usuarioRequestDTO.getSenha(),
                 usuarioRequestDTO.getTipoUsuario());
 

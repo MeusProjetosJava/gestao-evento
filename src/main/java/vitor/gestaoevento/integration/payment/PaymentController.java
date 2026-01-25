@@ -1,5 +1,6 @@
 package vitor.gestaoevento.integration.payment;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,9 @@ public class PaymentController {
     }
 
     @PostMapping("/webhook")
-    public void receberWebHook(@RequestBody PaymentWebhookDTO paymentWebhookDTO) {
-        paymentService.processarWebHookPagamento(paymentWebhookDTO);
+    public ResponseEntity<Void> receberWebHook(@RequestBody PaymentWebhookDTO dto) {
+        paymentService.processarWebHookPagamento(dto);
+        return ResponseEntity.ok().build();
     }
+
 }

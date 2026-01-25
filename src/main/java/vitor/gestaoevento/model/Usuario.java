@@ -11,6 +11,7 @@ public class Usuario {
     private Long id;
     @Column(nullable = false)
     private String nome;
+    private String telefone;
     @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
@@ -22,8 +23,9 @@ public class Usuario {
 
     protected Usuario(){}
 
-    public Usuario(String nome, String email, String senha, TipoUsuario tipoUsuario) {
+    public Usuario(String nome, String telefone, String email, String senha, TipoUsuario tipoUsuario) {
         this.nome = nome;
+        this.telefone = telefone;
         this.email = email;
         this.senha = senha;
         this.tipoUsuario = tipoUsuario;
@@ -35,6 +37,10 @@ public class Usuario {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
     }
 
     public String getEmail() {

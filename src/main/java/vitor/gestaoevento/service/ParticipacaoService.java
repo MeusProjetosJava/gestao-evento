@@ -1,26 +1,32 @@
 package vitor.gestaoevento.service;
 
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import vitor.gestaoevento.integration.whatsapp.WhatsAppService;
 import vitor.gestaoevento.model.Evento;
 import vitor.gestaoevento.model.Participacao;
 import vitor.gestaoevento.model.Usuario;
 import vitor.gestaoevento.repository.EventoRepository;
 import vitor.gestaoevento.repository.ParticipacaoRepository;
 import vitor.gestaoevento.repository.UsuarioRepository;
-
+@Slf4j
 @Service
 public class ParticipacaoService {
 
     private final UsuarioRepository usuarioRepository;
     private final EventoRepository eventoRepository;
     private final ParticipacaoRepository participacaoRepository;
+    private final WhatsAppService whatsAppService;
 
     public ParticipacaoService(UsuarioRepository usuarioRepository,
                                EventoRepository eventoRepository,
-                               ParticipacaoRepository participacaoRepository) {
+                               ParticipacaoRepository participacaoRepository,
+                               WhatsAppService  whatsAppService) {
         this.usuarioRepository = usuarioRepository;
         this.eventoRepository = eventoRepository;
         this.participacaoRepository = participacaoRepository;
+        this.whatsAppService = whatsAppService;
     }
 
     public Participacao cadastrarParticipacao(Long usuarioId, Long eventoId) {
@@ -46,7 +52,7 @@ public class ParticipacaoService {
 
         return participacaoRepository.save(participacao);
     }
-
+    @Transactional
     public Participacao confirmarPagamento(Long participacaoId) {
 
         Participacao participacao = participacaoRepository.findById(participacaoId)
@@ -54,7 +60,16 @@ public class ParticipacaoService {
 
         participacao.confirmarPagamento();
 
-        return participacaoRepository.save(participacao);
+        Participacao salva = participacaoRepository.save(participacao);
+
+        try {
+            whatsAppService.enviarConfirmacaoPagamento(salva);
+        } catch (Exception e) {
+            log.error("Erro ao enviar WhatsApp", e);
+        }
+
+
+        return salva;
     }
 
     public Participacao realizarCheckin(Long usuarioId, Long eventoId) {

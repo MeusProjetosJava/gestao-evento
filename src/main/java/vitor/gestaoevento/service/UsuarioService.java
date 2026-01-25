@@ -12,14 +12,14 @@ public class UsuarioService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Usuario cadastrarUsuario(String nome, String email,
+    public Usuario cadastrarUsuario(String nome, String telefone, String email,
                                               String senha, TipoUsuario tipoUsuario){
 
         if (usuarioRepository.existsByEmail(email)){
             throw new IllegalArgumentException("Já existe um usuario cadastrado com esse email");
         }
 
-        Usuario usuario = new Usuario(nome,email,senha,tipoUsuario);
+        Usuario usuario = new Usuario(nome,telefone,email,senha,tipoUsuario);
 
         return usuarioRepository.save(usuario);
     }

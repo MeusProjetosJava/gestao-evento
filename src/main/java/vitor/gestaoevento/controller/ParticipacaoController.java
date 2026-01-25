@@ -27,12 +27,6 @@ public class ParticipacaoController {
         return new ParticipacaoResponseDto(participacao);
     }
 
-    @PatchMapping("/{id}/pagamento")
-    public ParticipacaoResponseDto confirmarPagamento(@PathVariable Long id){
-        Participacao participacao = participacaoService.confirmarPagamento(id);
-        return new ParticipacaoResponseDto(participacao);
-    }
-
     @PatchMapping("/checkin")
     public ParticipacaoResponseDto realizarCheckin(@RequestBody ParticipacaoRequestDto
                                                                participacaoRequestDto){
