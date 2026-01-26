@@ -1,7 +1,7 @@
 package vitor.gestaoevento.exception;
 
-public class UsuarioJaCadastrado extends RuntimeException {
-  public UsuarioJaCadastrado(String message) {
-    super(message);
-  }
+public class UsuarioJaCadastradoException extends RuntimeException {
+    public UsuarioJaCadastradoException(String message) {
+        super(message);
+    }
 }

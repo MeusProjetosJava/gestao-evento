@@ -1,7 +1,7 @@
 package vitor.gestaoevento.exception;
 
-public class EventoNaoEncontrado extends RuntimeException {
-  public EventoNaoEncontrado(String message) {
-    super(message);
-  }
+public class EventoNaoEncontradoException extends RuntimeException {
+    public EventoNaoEncontradoException(String message) {
+        super(message);
+    }
 }
