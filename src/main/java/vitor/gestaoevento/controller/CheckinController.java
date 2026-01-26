@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vitor.gestaoevento.dto.CheckinRequestDto;
-import vitor.gestaoevento.dto.CheckinResponseDto;
-import vitor.gestaoevento.model.Participacao;
 import vitor.gestaoevento.service.ParticipacaoService;
 
 @RestController
