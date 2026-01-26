@@ -1,5 +1,8 @@
 package vitor.gestaoevento.controller;
 
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,10 +23,10 @@ public class CheckinController {
     }
 
     @PostMapping
-    public CheckinResponseDto realizarCheckin(@RequestBody CheckinRequestDto checkinRequestDto) {
-        Participacao participacao = participacaoService.realizarCheckin(checkinRequestDto.getUsuarioId(),
-                checkinRequestDto.getEventoId());
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> realizarChekin(@RequestBody @Valid CheckinRequestDto checkinRequestDto) {
+        participacaoService.realizarCheckin(checkinRequestDto.getQrCode());
 
-        return new CheckinResponseDto(participacao.getStatusCheckin(), participacao.getDataCheckin());
+        return ResponseEntity.noContent().build();
     }
 }

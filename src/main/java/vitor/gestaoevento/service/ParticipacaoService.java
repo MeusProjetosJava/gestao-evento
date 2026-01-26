@@ -79,22 +79,43 @@ public class ParticipacaoService {
         return salva;
     }
 
-    public Participacao realizarCheckin(Long usuarioId, Long eventoId) {
+    public void realizarCheckin(String qrCode) {
+        Long participacaoId = extrairParticipacaoId(qrCode);
 
-        Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
-
-        Evento evento = eventoRepository.findById(eventoId)
-                .orElseThrow(() -> new IllegalArgumentException("Evento não encontrado"));
-
-        Participacao participacao = participacaoRepository
-                .findByUsuarioAndEvento(usuario, evento)
-                .orElseThrow(() -> new IllegalArgumentException("Participação não encontrada"));
+        Participacao participacao = participacaoRepository.findById(participacaoId).orElseThrow(()
+        -> new IllegalArgumentException("Participação não encontrada"));
 
         participacao.realizarCheckin();
 
-        return participacaoRepository.save(participacao);
+        participacaoRepository.save(participacao);
+
+
     }
+
+    private Long extrairParticipacaoId(String qrCode) {
+
+        if (qrCode == null || qrCode.isBlank()) {
+            throw new IllegalArgumentException("QR Code inválido");
+        }
+
+
+        if (!qrCode.startsWith("participacao:")) {
+            throw new IllegalArgumentException("QR Code com formato inválido");
+        }
+
+        String[] partes = qrCode.split(":");
+
+        if (partes.length != 2) {
+            throw new IllegalArgumentException("QR Code malformado");
+        }
+
+        try {
+            return Long.parseLong(partes[1]);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("ID da participação inválido");
+        }
+    }
+
 
 
     public void validarParaGerarQr(Participacao participacao) {

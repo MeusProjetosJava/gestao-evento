@@ -20,7 +20,7 @@ public class ParticipacaoController {
 
     @PostMapping
     public ParticipacaoResponseDto cadastrarParticipacao(@RequestBody ParticipacaoRequestDto
-                                                                     participacaoRequestDto) {
+                                                                 participacaoRequestDto) {
         Participacao participacao = participacaoService.cadastrarParticipacao(
                 participacaoRequestDto.getUsuarioId(),
                 participacaoRequestDto.getEventoId()
@@ -29,21 +29,11 @@ public class ParticipacaoController {
         return new ParticipacaoResponseDto(participacao);
     }
 
-    @PatchMapping("/checkin")
-    public ParticipacaoResponseDto realizarCheckin(@RequestBody ParticipacaoRequestDto
-                                                               participacaoRequestDto){
-        Participacao participacao = participacaoService.realizarCheckin(participacaoRequestDto
-                .getUsuarioId(), participacaoRequestDto.getEventoId());
-
-        return new ParticipacaoResponseDto(participacao);
-    }
-
     @PatchMapping("/{id}/pagamento")
-    public ParticipacaoResponseDto confirmarPagamento(@PathVariable Long id){
+    public ParticipacaoResponseDto confirmarPagamento(@PathVariable Long id) {
         Participacao participacao = participacaoService.confirmarPagamento(id);
         return new ParticipacaoResponseDto(participacao);
     }
-
 
     @GetMapping("/{id}/qrcode")
     public ResponseEntity<byte[]> gerarQrCode(@PathVariable Long id) {
@@ -54,10 +44,6 @@ public class ParticipacaoController {
                 .contentType(MediaType.IMAGE_PNG)
                 .body(imagem);
     }
-
-
-
-
 
 
 }

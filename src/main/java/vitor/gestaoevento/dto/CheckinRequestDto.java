@@ -1,19 +1,13 @@
 package vitor.gestaoevento.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import vitor.gestaoevento.model.Participacao;
+
 public class CheckinRequestDto {
+    @NotBlank(message = "Qr code é obrigatório")
+    private String qrCode;
 
-    private Long usuarioId;
-    private Long eventoId;
-
-    public CheckinRequestDto() {}
-
-    public Long getUsuarioId() {
-        return usuarioId;
+    public String getQrCode() {
+        return qrCode;
     }
-
-    public Long getEventoId() {
-        return eventoId;
-    }
-
-
 }
