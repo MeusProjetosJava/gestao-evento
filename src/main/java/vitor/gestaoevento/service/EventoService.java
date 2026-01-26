@@ -1,6 +1,7 @@
 package vitor.gestaoevento.service;
 
 import org.springframework.stereotype.Service;
+import vitor.gestaoevento.exception.EventoNaoEncontradoException;
 import vitor.gestaoevento.model.Evento;
 import vitor.gestaoevento.model.StatusEvento;
 import vitor.gestaoevento.repository.EventoRepository;
@@ -31,7 +32,7 @@ public class EventoService {
 
     public Evento buscarEventoPorId(Long eventoId) {
         return eventoRepository.findById(eventoId).orElseThrow(() ->
-                new IllegalArgumentException("Evento não encontrado"));
+               new EventoNaoEncontradoException("Evento não encontrado"));
     }
 
     public Evento encerrarEventoPorId(Long eventoId) {
