@@ -1,14 +1,10 @@
 package vitor.gestaoevento.dto;
 
+import jakarta.validation.constraints.NotNull;
+
 public class ParticipacaoRequestDto {
-    private Long usuarioId;
+    @NotNull
     private Long eventoId;
-
-    public ParticipacaoRequestDto(){}
-
-    public Long getUsuarioId() {
-        return usuarioId;
-    }
 
     public Long getEventoId() {
         return eventoId;

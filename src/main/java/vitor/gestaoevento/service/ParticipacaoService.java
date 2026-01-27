@@ -40,10 +40,13 @@ public class ParticipacaoService {
         this.authenticatedUserService = authenticatedUserService;
     }
 
-    public Participacao cadastrarParticipacao(Long usuarioId, Long eventoId) {
+    public Participacao cadastrarParticipacao(Long eventoId) {
 
-        Usuario usuario = usuarioRepository.findById(usuarioId)
-                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado"));
+        Usuario usuarioLogado = authenticatedUserService.getUsuarioLogado();
+
+        log.info("USUARIO LOGADO -> ID: {} | EMAIL: {}",
+                usuarioLogado.getId(),
+                usuarioLogado.getEmail());
 
         Evento evento = eventoRepository.findById(eventoId)
                 .orElseThrow(() -> new EventoNaoEncontradoException("Evento não encontrado"));
@@ -53,13 +56,13 @@ public class ParticipacaoService {
         }
 
         boolean jaExisteParticipacao =
-                participacaoRepository.existsByUsuarioAndEvento(usuario, evento);
+                participacaoRepository.existsByUsuarioAndEvento(usuarioLogado, evento);
 
         if (jaExisteParticipacao) {
             throw new UsuarioJaInscritoException("Usuário já está inscrito neste evento");
         }
 
-        Participacao participacao = new Participacao(usuario, evento);
+        Participacao participacao = new Participacao(usuarioLogado, evento);
 
         return participacaoRepository.save(participacao);
     }

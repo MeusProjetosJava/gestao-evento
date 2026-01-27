@@ -13,5 +13,4 @@ public interface ParticipacaoRepository extends JpaRepository<Participacao,Long>
 
     boolean existsByUsuarioAndEvento(Usuario usuario, Evento evento);
 
-    Optional<Participacao> findByUsuarioAndEvento(Usuario usuario, Evento evento);
 }

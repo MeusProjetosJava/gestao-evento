@@ -1,5 +1,6 @@
 package vitor.gestaoevento.exception;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 
@@ -71,7 +72,14 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiErrorResponse> handleGenericException(Exception ex) {
+    public ResponseEntity<ApiErrorResponse> handleGenericException(
+            Exception ex,
+            HttpServletRequest request) {
+
+        if (request.getRequestURI().startsWith("/v3/api-docs")
+                || request.getRequestURI().startsWith("/swagger-ui")) {
+            throw new RuntimeException(ex);
+        }
 
         ApiErrorResponse error = new ApiErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
@@ -81,4 +89,5 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
+
 }
