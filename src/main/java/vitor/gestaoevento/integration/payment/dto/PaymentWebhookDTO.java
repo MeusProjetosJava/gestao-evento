@@ -2,7 +2,7 @@ package vitor.gestaoevento.integration.payment.dto;
 
 public class PaymentWebhookDTO {
 
-    private Long participacaoId;
+    private Long registrationId;
     private String status;
 
     public PaymentWebhookDTO() {}
@@ -11,7 +11,7 @@ public class PaymentWebhookDTO {
         return status;
     }
 
-    public Long getParticipacaoId() {
-        return participacaoId;
+    public Long getRegistrationId() {
+        return registrationId;
     }
 }

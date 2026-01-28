@@ -1,21 +1,21 @@
 package vitor.gestaoevento.dto;
 
-import vitor.gestaoevento.model.StatusCheckin;
+import vitor.gestaoevento.model.CheckInStatus;
 
 import java.time.LocalDateTime;
 
 public class CheckinResponseDto {
 
-   private StatusCheckin statusCheckin;
+   private CheckInStatus checkInStatus;
    private LocalDateTime dataCheckin;
 
-   public CheckinResponseDto(StatusCheckin statusCheckin, LocalDateTime dataCheckin) {
-       this.statusCheckin = statusCheckin;
+   public CheckinResponseDto(CheckInStatus checkInStatus, LocalDateTime dataCheckin) {
+       this.checkInStatus = checkInStatus;
        this.dataCheckin = dataCheckin;
    }
 
-    public StatusCheckin getStatusCheckin() {
-        return statusCheckin;
+    public CheckInStatus getCheckInStatus() {
+        return checkInStatus;
     }
 
     public LocalDateTime getDataCheckin() {

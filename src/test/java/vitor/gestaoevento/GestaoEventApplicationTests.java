@@ -1,0 +1,13 @@
+package vitor.gestaoevento;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class GestaoEventApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}

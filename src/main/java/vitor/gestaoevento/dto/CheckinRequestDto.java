@@ -2,7 +2,7 @@ package vitor.gestaoevento.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
-import vitor.gestaoevento.model.Participacao;
+
 @Schema(description = "Requisição para realizar check-in via QR Code")
 public class CheckinRequestDto {
 

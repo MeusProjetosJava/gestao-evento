@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,34 +13,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vitor.gestaoevento.dto.CheckinRequestDto;
-import vitor.gestaoevento.service.ParticipacaoService;
+import vitor.gestaoevento.service.RegistrationService;
 
+@Tag(
+        name = "Check-ins",
+        description = "Event check-in operations"
+)
 @RestController
-@RequestMapping("/checkins")
+@RequestMapping("/check-ins")
 public class CheckinController {
 
-    ParticipacaoService participacaoService;
+    RegistrationService registrationService;
 
-    public CheckinController(ParticipacaoService ParticipacaoService) {
-        this.participacaoService = ParticipacaoService;
+    public CheckinController(RegistrationService RegistrationService) {
+        this.registrationService = RegistrationService;
     }
 
     @Operation(
-            summary = "Realizar check-in via QR Code",
-            description = "Permite que um ADMIN realize o check-in de uma participação a partir do QR Code"
+            summary = "Perform check-in using QR code",
+            description = "Allows an ADMIN user to perform the check-in of a registration using a QR code"
     )
     @ApiResponses({
-            @ApiResponse(responseCode = "204", description = "Check-in realizado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Regra de negócio violada"),
-            @ApiResponse(responseCode = "401", description = "Não autenticado"),
-            @ApiResponse(responseCode = "403", description = "Sem permissão"),
-            @ApiResponse(responseCode = "404", description = "Participação não encontrada")
+            @ApiResponse(responseCode = "204", description = "Check-in successfully performed"),
+            @ApiResponse(responseCode = "400", description = "Business rule violation"),
+            @ApiResponse(responseCode = "401", description = "Unauthenticated user"),
+            @ApiResponse(responseCode = "403", description = "Access denied"),
+            @ApiResponse(responseCode = "404", description = "Registration not found")
     })
     @SecurityRequirement(name = "basicAuth")
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> realizarChekin(@RequestBody @Valid CheckinRequestDto checkinRequestDto) {
-        participacaoService.realizarCheckin(checkinRequestDto.getQrCode());
+    public ResponseEntity<Void> checkIn(@RequestBody @Valid CheckinRequestDto checkinRequestDto) {
+        registrationService.checkIn(checkinRequestDto.getQrCode());
 
         return ResponseEntity.noContent().build();
     }

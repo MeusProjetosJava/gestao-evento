@@ -14,15 +14,15 @@ import vitor.gestaoevento.dto.ApiErrorResponse;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     @ExceptionHandler({
-            CheckinJaRealizadoException.class,
-            PagamentoNaoConfirmadoException.class,
-            EventoInativoException.class,
-            EventoNaoEncontradoException.class,
-            ParticipacaoNaoEncontradaException.class,
-            UsuarioJaCadastradoException.class,
-            UsuarioJaInscritoException.class,
-            UsuarioNaoEncontradoException.class,
-            QrCodeInvalidoException.class
+            CheckInAlreadyDoneException.class,
+            PaymentNotConfirmedException.class,
+            InactiveEventException.class,
+            EventNotFoundException.class,
+            ParticipationNotFoundException.class,
+            UserAlreadyRegisteredException.class,
+            UserAlreadyEnrolledException.class,
+            UserNotFoundException.class,
+            InvalidQrCodeException.class
     })
     public ResponseEntity<ApiErrorResponse> handleBusinessExceptions(RuntimeException ex) {
         ApiErrorResponse error = new ApiErrorResponse(

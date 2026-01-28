@@ -19,18 +19,18 @@ public class PaymentController {
     }
 
     @PostMapping
-    public CreatePaymentResponseDTO criarPagamento(@RequestBody CreatePaymentRequestDTO
+    public CreatePaymentResponseDTO createPayment(@RequestBody CreatePaymentRequestDTO
                                                                createPaymentRequestDTO) {
-        String paymentUrl = paymentService.criarPagamentoSimulado(
-            createPaymentRequestDTO.getParticipacaoId()
+        String paymentUrl = paymentService.createMockPayment(
+            createPaymentRequestDTO.getRegistrationId()
         );
 
         return new CreatePaymentResponseDTO(paymentUrl);
     }
 
     @PostMapping("/webhook")
-    public ResponseEntity<Void> receberWebHook(@RequestBody PaymentWebhookDTO dto) {
-        paymentService.processarWebHookPagamento(dto);
+    public ResponseEntity<Void> receiveWebhook(@RequestBody PaymentWebhookDTO dto) {
+        paymentService.processPaymentWebhook(dto);
         return ResponseEntity.ok().build();
     }
 

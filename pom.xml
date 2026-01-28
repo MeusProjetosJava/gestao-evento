@@ -16,14 +16,15 @@
 
     <!-- PROJECT INFO -->
     <groupId>vitor</groupId>
-    <artifactId>gestao-evento</artifactId>
+    <artifactId>gestao-event</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gestao-evento</name>
+    <name>gestao-event</name>
     <description>API de gestão de eventos com pagamento, QR Code e check-in</description>
 
     <!-- JAVA VERSION -->
     <properties>
         <java.version>21</java.version>
+        <lombok.version>1.18.30</lombok.version>
     </properties>
 
     <!-- DEPENDENCIES -->
@@ -104,8 +105,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
+
 
         <!-- TESTS (JUNIT 5 + MOCKITO + SPRING TEST) -->
         <dependency>
@@ -124,6 +127,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
                 <configuration>
                     <source>21</source>
                     <target>21</target>
@@ -131,10 +135,12 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+
 
             <!-- SPRING BOOT PLUGIN -->
             <plugin>

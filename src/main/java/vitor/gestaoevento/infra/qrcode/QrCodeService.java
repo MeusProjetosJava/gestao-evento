@@ -13,10 +13,10 @@ import java.io.IOException;
 @Service
 public class QrCodeService {
 
-    public byte[] gerarQrCodePng(String conteudo) {
+    public byte[] generateQrCodePng(String content) {
         try {
             QRCodeWriter writer = new QRCodeWriter();
-            BitMatrix bitMatrix = writer.encode(conteudo, BarcodeFormat.QR_CODE, 300, 300);
+            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 300, 300);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
