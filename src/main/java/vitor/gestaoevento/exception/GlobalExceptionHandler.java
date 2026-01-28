@@ -18,7 +18,7 @@ public class GlobalExceptionHandler {
             PaymentNotConfirmedException.class,
             InactiveEventException.class,
             EventNotFoundException.class,
-            ParticipationNotFoundException.class,
+            RegistrationNotFoundException.class,
             UserAlreadyRegisteredException.class,
             UserAlreadyEnrolledException.class,
             UserNotFoundException.class,

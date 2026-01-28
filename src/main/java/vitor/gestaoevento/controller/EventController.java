@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import vitor.gestaoevento.dto.EventRequestDto;
 import vitor.gestaoevento.dto.EventResponseDto;
@@ -40,6 +41,7 @@ public class EventController {
     })
     @SecurityRequirement(name = "basicAuth")
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public EventResponseDto createEvent(@RequestBody @Valid EventRequestDto eventRequestDto) {
         Event event = eventService.createEvent(

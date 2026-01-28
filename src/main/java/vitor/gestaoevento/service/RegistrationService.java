@@ -67,7 +67,7 @@ public class RegistrationService {
     public Registration confirmPayment(Long participationId) {
 
         Registration registration = registrationRepository.findById(participationId)
-                .orElseThrow(() -> new ParticipationNotFoundException("Participação não encontrada"));
+                .orElseThrow(() -> new RegistrationNotFoundException("Participação não encontrada"));
 
         registration.confirmPayment();
 
@@ -83,7 +83,7 @@ public class RegistrationService {
         Long participationId = extractParticipationId(qrCode);
 
         Registration registration = registrationRepository.findById(participationId).orElseThrow(()
-        -> new ParticipationNotFoundException("Participação não encontrada"));
+        -> new RegistrationNotFoundException("Participação não encontrada"));
 
         registration.performCheckIn();
 
@@ -131,7 +131,7 @@ public class RegistrationService {
 
     public byte[] generateParticipationQrCode(Long participationId) {
         Registration registration = registrationRepository.findById(participationId)
-                .orElseThrow(() -> new ParticipationNotFoundException("Participação não encontrada"));
+                .orElseThrow(() -> new RegistrationNotFoundException("Participação não encontrada"));
 
         User authenticatedUser = authenticatedUserService.getAuthenticatedUser();
 

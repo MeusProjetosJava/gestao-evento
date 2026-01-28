@@ -21,7 +21,7 @@ public class RegistrationResponseDto {
         this.eventId = registration.getEvent().getId();
         this.paymentStatus = registration.getPaymentStatus();
         this.checkInStatus = registration.getCheckInStatus();
-        this.checkInDateTime = registration.getDataCheckin();
+        this.checkInDateTime = registration.getCheckInDate();
     }
 
     public Long getId() {

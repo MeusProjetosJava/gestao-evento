@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(
+        name = "registrations",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"user_id", "event_id"})
         }
@@ -30,7 +31,7 @@ public class Registration {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private CheckInStatus checkInStatus;
-    private LocalDateTime dataCheckin;
+    private LocalDateTime checkInDate;
 
     protected Registration() {
     }
@@ -62,8 +63,8 @@ public class Registration {
         return checkInStatus;
     }
 
-    public LocalDateTime getDataCheckin() {
-        return dataCheckin;
+    public LocalDateTime getCheckInDate() {
+        return checkInDate;
     }
 
     public boolean canCheckIn() {
@@ -81,6 +82,6 @@ public class Registration {
             throw new IllegalArgumentException("Checkin não permitido");
         }
         this.checkInStatus = CheckInStatus.COMPLETED;
-        this.dataCheckin = LocalDateTime.now();
+        this.checkInDate = LocalDateTime.now();
     }
 }

@@ -7,18 +7,18 @@ import java.time.LocalDateTime;
 public class CheckinResponseDto {
 
    private CheckInStatus checkInStatus;
-   private LocalDateTime dataCheckin;
+   private LocalDateTime checkInDate;
 
-   public CheckinResponseDto(CheckInStatus checkInStatus, LocalDateTime dataCheckin) {
+   public CheckinResponseDto(CheckInStatus checkInStatus, LocalDateTime checkInDate) {
        this.checkInStatus = checkInStatus;
-       this.dataCheckin = dataCheckin;
+       this.checkInDate = checkInDate;
    }
 
     public CheckInStatus getCheckInStatus() {
         return checkInStatus;
     }
 
-    public LocalDateTime getDataCheckin() {
-        return dataCheckin;
+    public LocalDateTime getCheckInDate() {
+        return checkInDate;
     }
 }
