@@ -19,6 +19,20 @@ class EventTest {
     }
 
     @Test
-    void isActive() {
+    void shouldReturnTrueWhenEventIsActive() {
+        Event event = new Event("Show de Rock", LocalDateTime.of(2023, 10, 27, 10, 15, 30),
+                "Arena Castelão","Xandy",80.0,EventStatus.ACTIVE);
+
+        assertTrue(event.isActive());
     }
+
+
+    @Test
+    void shouldReturnFalseWhenEventIsClosed() {
+        Event event = new Event("Show de Rock", LocalDateTime.of(2023, 10, 27, 10, 15, 30),
+                "Arena Castelão","Xandy",80.0,EventStatus.CLOSED);
+
+        assertFalse(event.isActive());
+    }
+
 }
