@@ -48,6 +48,13 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- Oauth2 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+
+
         <!-- SPRING VALIDATION (JAKARTA) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
