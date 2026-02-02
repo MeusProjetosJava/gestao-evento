@@ -4,7 +4,11 @@ import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.License;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.context.annotation.Configuration;
+
+
+
 
 @Configuration
 @OpenAPIDefinition(
@@ -20,7 +24,14 @@ import org.springframework.context.annotation.Configuration;
                 license = @License(
                         name = "MIT License"
                 )
-        )
+
+        ),
+
+        security = @SecurityRequirement(name = "bearerAuth")
+
 )
 public class OpenApiConfig {
 }
+
+
+
