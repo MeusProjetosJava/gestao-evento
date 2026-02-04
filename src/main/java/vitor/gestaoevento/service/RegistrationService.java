@@ -92,6 +92,14 @@ public class RegistrationService {
 
     }
 
+
+    public Registration findById(Long registrationId) {
+        return registrationRepository.findById(registrationId)
+                .orElseThrow(() ->
+                        new RegistrationNotFoundException("Participação não encontrada"));
+    }
+
+
     private Long extractParticipationId(String qrCode) {
 
         if (qrCode == null || qrCode.isBlank()) {

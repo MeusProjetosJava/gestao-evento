@@ -2,7 +2,7 @@ package vitor.gestaoevento.integration.payment.dto;
 
 public class CreatePaymentResponseDTO {
 
-    private String paymentUrl;
+    private final String paymentUrl;
 
     public CreatePaymentResponseDTO(String paymentUrl) {
         this.paymentUrl = paymentUrl;

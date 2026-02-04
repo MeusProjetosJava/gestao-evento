@@ -36,7 +36,7 @@ public class RegistrationController {
             @ApiResponse(responseCode = "400", description = "User already registered or invalid event"),
             @ApiResponse(responseCode = "401", description = "Unauthenticated user")
     })
-    @SecurityRequirement(name = "basicAuth")
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping
     public RegistrationResponseDto registerParticipation(@RequestBody RegistrationRequestDto
                                                                   registrationRequestDto) {
@@ -56,7 +56,7 @@ public class RegistrationController {
             @ApiResponse(responseCode = "404", description = "Registration not found"),
             @ApiResponse(responseCode = "400", description = "Payment already confirmed")
     })
-    @SecurityRequirement(name = "basicAuth")
+    @SecurityRequirement(name = "bearerAuth")
     @PatchMapping("/{id}/payment")
     public RegistrationResponseDto confirmPayment(@PathVariable Long id) {
         Registration registration = registrationService.confirmPayment(id);
@@ -72,7 +72,7 @@ public class RegistrationController {
             @ApiResponse(responseCode = "400", description = "Payment not confirmed or inactive event"),
             @ApiResponse(responseCode = "404", description = "Registration not found")
     })
-    @SecurityRequirement(name = "basicAuth")
+    @SecurityRequirement(name = "bearerAuth")
     @GetMapping(value = "/{id}/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<byte[]> generateQrCode(@PathVariable Long id) {
 

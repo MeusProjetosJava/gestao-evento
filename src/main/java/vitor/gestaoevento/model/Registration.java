@@ -77,6 +77,11 @@ public class Registration {
         this.paymentStatus = PaymentStatus.PAID;
     }
 
+    public boolean isPaid() {
+        return this.paymentStatus == PaymentStatus.PAID;
+    }
+
+
     public void performCheckIn() {
         if (!canCheckIn()) {
             throw new IllegalArgumentException("Checkin não permitido");
