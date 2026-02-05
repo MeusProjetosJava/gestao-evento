@@ -23,7 +23,7 @@ public class PaymentController {
         String paymentUrl = paymentService.createPayment(registrationId);
         return new CreatePaymentResponseDTO(paymentUrl);
     }
-
+/*
     @PostMapping("/webhooks/mercadopago")
     public ResponseEntity<Void> receiveWebhook(
             @RequestBody MercadoPagoWebhookPayload payload,
@@ -31,4 +31,6 @@ public class PaymentController {
         paymentService.processWebhook(payload, signature);
         return ResponseEntity.ok().build();
     }
+
+ */
 }

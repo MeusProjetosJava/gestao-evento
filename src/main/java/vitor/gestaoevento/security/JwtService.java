@@ -17,18 +17,19 @@ public class JwtService {
             "chave-super-secreta-mude-depois-com-32-bytes";
 
     public String generateToken(Authentication authentication) {
-
         Instant now = Instant.now();
+
+        var roles = authentication.getAuthorities().stream()
+                .map(a -> a.getAuthority())   // Ex: "ROLE_ADMIN"
+                .toList();
 
         return Jwts.builder()
                 .setSubject(authentication.getName())
+                .claim("authorities", roles)  // 👈 claim com authorities
                 .setIssuedAt(Date.from(now))
                 .setExpiration(Date.from(now.plus(1, ChronoUnit.HOURS)))
-                .signWith(
-                        Keys.hmacShaKeyFor(
-                                SECRET.getBytes(StandardCharsets.UTF_8)
-                        )
-                )
+                .signWith(Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)))
                 .compact();
     }
+
 }

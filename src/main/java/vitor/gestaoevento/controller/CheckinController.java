@@ -40,10 +40,11 @@ public class CheckinController {
             @ApiResponse(responseCode = "403", description = "Access denied"),
             @ApiResponse(responseCode = "404", description = "Registration not found")
     })
-    @SecurityRequirement(name = "basicAuth")
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> checkIn(@RequestBody @Valid CheckinRequestDto checkinRequestDto) {
+
         registrationService.checkIn(checkinRequestDto.getQrCode());
 
         return ResponseEntity.noContent().build();

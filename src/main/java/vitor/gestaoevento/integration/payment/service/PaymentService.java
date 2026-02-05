@@ -32,7 +32,7 @@ public class PaymentService {
 
         return mercadoPagoClient.createPayment(registration);
     }
-
+/*
     public void processWebhook(
             MercadoPagoWebhookPayload payload,
             String signature) {
@@ -50,4 +50,6 @@ public class PaymentService {
             );
         }
     }
+    */
+
 }

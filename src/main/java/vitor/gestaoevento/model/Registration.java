@@ -74,8 +74,12 @@ public class Registration {
     }
 
     public void confirmPayment() {
+        if (this.paymentStatus == PaymentStatus.PAID) {
+            return;
+        }
         this.paymentStatus = PaymentStatus.PAID;
     }
+
 
     public boolean isPaid() {
         return this.paymentStatus == PaymentStatus.PAID;

@@ -22,6 +22,7 @@ public class MercadoPagoWebhookPayload {
     }
 
     public static class Data {
+
         private String id;
 
         public String getId() {

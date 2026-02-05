@@ -73,17 +73,21 @@ public class RegistrationService {
 
         Registration registrationSaved = registrationRepository.save(registration);
 
-        smsService.sendPaymentConfirmation(registrationSaved);
-
+        try {
+            smsService.sendPaymentConfirmation(registrationSaved);
+        } catch (Exception e) {
+            log.error("Erro ao enviar SMS de confirmação de pagamento", e);
+        }
 
         return registrationSaved;
     }
+
 
     public void checkIn(String qrCode) {
         Long participationId = extractParticipationId(qrCode);
 
         Registration registration = registrationRepository.findById(participationId).orElseThrow(()
-        -> new RegistrationNotFoundException("Participação não encontrada"));
+                -> new RegistrationNotFoundException("Participação não encontrada"));
 
         registration.performCheckIn();
 
@@ -125,13 +129,12 @@ public class RegistrationService {
     }
 
 
-
     public void validateForQrGeneration(Registration registration) {
         if (registration.getPaymentStatus() != PaymentStatus.PAID) {
             throw new InvalidQrCodeException("Qr code só pode ser gerado com o pagamento pago");
         }
 
-        if (!registration.getEvent().isActive()){
+        if (!registration.getEvent().isActive()) {
             throw new InactiveEventException("Evento não está ativo");
         }
 
@@ -143,7 +146,7 @@ public class RegistrationService {
 
         User authenticatedUser = authenticatedUserService.getAuthenticatedUser();
 
-        if (!registration.getUser().getId().equals(authenticatedUser.getId())){
+        if (!registration.getUser().getId().equals(authenticatedUser.getId())) {
             throw new SecurityException("Você não tem permissão para gerar este QR Code");
         }
 
