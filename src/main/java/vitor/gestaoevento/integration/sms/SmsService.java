@@ -32,7 +32,7 @@ public class SmsService {
                 Data: %s
                 Local: %s
                 
-                Bom event!
+                Bom evento!
                 """.formatted(
                 registration.getUser().getName(),
                 registration.getEvent().getAttraction(),
