@@ -1,3 +1,4 @@
+![Docker Hub](https://img.shields.io/docker/v/jvitordev96/gestao-evento-backend?label=Docker%20Image&logo=docker)
 # 🎟️ Event Management Backend
 
 Backend **Java + Spring Boot** para um **sistema de gestão de eventos**, com foco em **segurança, regras de negócio no domínio e integração real com pagamentos**.

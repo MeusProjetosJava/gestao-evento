@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
 # 3️⃣ Copia o JAR gerado pelo Maven
-COPY target/gestao-evento-0.0.1-SNAPSHOT.jar app.jar
+COPY target/gestao-event-0.0.1-SNAPSHOT.jar app.jar
 
 # 4️⃣ Porta usada pela aplicação
 EXPOSE 8080
