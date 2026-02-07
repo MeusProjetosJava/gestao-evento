@@ -20,12 +20,12 @@ public class JwtService {
         Instant now = Instant.now();
 
         var roles = authentication.getAuthorities().stream()
-                .map(a -> a.getAuthority())   // Ex: "ROLE_ADMIN"
+                .map(a -> a.getAuthority())
                 .toList();
 
         return Jwts.builder()
                 .setSubject(authentication.getName())
-                .claim("authorities", roles)  // 👈 claim com authorities
+                .claim("authorities", roles)
                 .setIssuedAt(Date.from(now))
                 .setExpiration(Date.from(now.plus(1, ChronoUnit.HOURS)))
                 .signWith(Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8)))

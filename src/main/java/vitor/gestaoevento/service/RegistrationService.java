@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import vitor.gestaoevento.exception.*;
-import vitor.gestaoevento.infra.qrcode.QrCodeService;
+import vitor.gestaoevento.integration.infra.QrCodeService;
 import vitor.gestaoevento.integration.sms.SmsService;
 import vitor.gestaoevento.model.Event;
 import vitor.gestaoevento.model.Registration;

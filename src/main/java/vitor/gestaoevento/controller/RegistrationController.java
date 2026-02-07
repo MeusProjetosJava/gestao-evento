@@ -47,21 +47,6 @@ public class RegistrationController {
         return new RegistrationResponseDto(registration);
     }
 
-    @Operation(
-            summary = "Confirm registration payment",
-            description = "Confirms the payment of a registration"
-    )
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Payment successfully confirmed"),
-            @ApiResponse(responseCode = "404", description = "Registration not found"),
-            @ApiResponse(responseCode = "400", description = "Payment already confirmed")
-    })
-    @SecurityRequirement(name = "bearerAuth")
-    @PatchMapping("/{id}/payment")
-    public RegistrationResponseDto confirmPayment(@PathVariable Long id) {
-        Registration registration = registrationService.confirmPayment(id);
-        return new RegistrationResponseDto(registration);
-    }
 
     @Operation(
             summary = "Generate registration QR code",

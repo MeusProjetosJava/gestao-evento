@@ -39,7 +39,7 @@ public class EventController {
             @ApiResponse(responseCode = "401", description = "Unauthenticated user"),
             @ApiResponse(responseCode = "403", description = "Access denied")
     })
-    @SecurityRequirement(name = "basicAuth")
+    @SecurityRequirement(name = "bearerAuth")
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
@@ -91,7 +91,8 @@ public class EventController {
             @ApiResponse(responseCode = "404", description = "Event not found"),
             @ApiResponse(responseCode = "400", description = "Event is already closed")
     })
-    @SecurityRequirement(name = "basicAuth")
+    @SecurityRequirement(name = "bearerAuth")
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/{id}/close")
     public EventResponseDto closeEventById(@PathVariable Long id) {
         Event event = eventService.closeEventById(id);

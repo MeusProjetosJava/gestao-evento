@@ -1,4 +1,4 @@
-package vitor.gestaoevento.infra.qrcode;
+package vitor.gestaoevento.integration.infra;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;

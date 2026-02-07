@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 import vitor.gestaoevento.exception.*;
-import vitor.gestaoevento.infra.qrcode.QrCodeService;
+import vitor.gestaoevento.integration.infra.QrCodeService;
 import vitor.gestaoevento.integration.sms.SmsService;
 import vitor.gestaoevento.model.*;
 import vitor.gestaoevento.repository.EventRepository;
