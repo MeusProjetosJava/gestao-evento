@@ -29,14 +29,11 @@ public class MercadoPagoClient {
         System.out.println("Mercado Pago SDK inicializado");
     }
 
-    /**
-     * Cria uma preferência de pagamento (Checkout Pro)
-     * Retorna a URL de pagamento (initPoint)
-     */
+
     public String createPayment(Registration registration) {
 
         try {
-            // Item do pagamento (evento)
+
             PreferenceItemRequest item =
                     PreferenceItemRequest.builder()
                             .title(registration.getEvent().getAttraction())
@@ -49,13 +46,13 @@ public class MercadoPagoClient {
                             .currencyId("BRL")
                             .build();
 
-            // Pagador
+
             PreferencePayerRequest payer =
                     PreferencePayerRequest.builder()
                             .email(registration.getUser().getEmail())
                             .build();
 
-            // Preferência
+
             PreferenceRequest request =
                     PreferenceRequest.builder()
                             .items(List.of(item))
@@ -77,9 +74,8 @@ public class MercadoPagoClient {
             );
         }
     }
-    /**
-     * Consulta um pagamento real no Mercado Pago pelo ID
-     */
+
+
     public Payment getPaymentById(String paymentId) {
 
         try {

@@ -32,24 +32,5 @@ public class PaymentService {
 
         return mercadoPagoClient.createPayment(registration);
     }
-/*
-    public void processWebhook(
-            MercadoPagoWebhookPayload payload,
-            String signature) {
-
-        mercadoPagoClient.validateSignature(payload, signature);
-
-        String paymentId = payload.getData().getId();
-
-        MercadoPagoPayment payment =
-                mercadoPagoClient.getPayment(paymentId);
-
-        if ("approved".equalsIgnoreCase(payment.getStatus())) {
-            registrationService.confirmPayment(
-                    payment.getExternalReference()
-            );
-        }
-    }
-    */
 
 }
